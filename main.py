@@ -35,22 +35,25 @@ while step < 2000:
                 charging_cars_station_1 = (
                     traci_connection.chargingstation.getVehicleIDs("cs_0")
                 )
-
                 charging_cars_station_2 = (
                     traci_connection.chargingstation.getVehicleIDs("cs_1")
                 )
-                traci_connection.vehicle.setRoute(vehicle_id, ["E0", "E1", "E2", "E4"])
+                selected_station_id = (
+                    "cs_0"
+                    if len(charging_cars_station_1) < len(charging_cars_station_2)
+                    else "cs_1"
+                )
+                if selected_station_id == "cs_0":
+                    traci_connection.vehicle.setRoute(vehicle_id, ["E0", "E1", "E2", "E4"])
+                else:
+                    traci_connection.vehicle.setRoute(vehicle_id, ["E0", "E6", "E7", "E8"])
+                    
                 traci_connection.vehicle.setChargingStationStop(
                     vehicle_id,
-                    (
-                        "cs_0"
-                        if len(charging_cars_station_1) < len(charging_cars_station_2)
-                        else "cs_1"
-                    ),
+                    selected_station_id,
                     duration=600,
                     until=1000,
                 )
-                charging_vehicles.append(vehicle_id)
 
             charging_cars_ids = traci_connection.chargingstation.getVehicleIDs("cs_0")
             charging_cars_ids = (
@@ -74,8 +77,8 @@ while step < 2000:
                 print(
                     f"battery:{current_battery}, capacity: {vehicle_battery_capcity},Vehicle: {v_id}"
                 )
-                if current_battery >= vehicle_battery_capcity * 0.9:
+                if current_battery >= vehicle_battery_capcity * 0.8:
+                    print(f"vehicle with id {v_id} was charged.")
                     traci_connection.vehicle.resume(v_id)
-                    charging_vehicles.remove(v_id)
             # print(f"must recharge.{counter}")
     step += 1
