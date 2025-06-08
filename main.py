@@ -31,18 +31,34 @@ while step < 2000:
             )
         )
         if current_battery <= vehicle_battery_capcity * 0.15:
-            counter += 1
             if traci_connection.vehicle.getPosition(vehicle_id)[0] < -2:
+                charging_cars_station_1 = (
+                    traci_connection.chargingstation.getVehicleIDs("cs_0")
+                )
+
+                charging_cars_station_2 = (
+                    traci_connection.chargingstation.getVehicleIDs("cs_1")
+                )
                 traci_connection.vehicle.setRoute(vehicle_id, ["E0", "E1", "E2", "E4"])
                 traci_connection.vehicle.setChargingStationStop(
                     vehicle_id,
-                    "cs_0",
+                    (
+                        "cs_0"
+                        if len(charging_cars_station_1) < len(charging_cars_station_2)
+                        else "cs_1"
+                    ),
                     duration=600,
                     until=1000,
                 )
                 charging_vehicles.append(vehicle_id)
-            charging_car_ids = traci_connection.chargingstation.getVehicleIDs("cs_0")
-            for v_id in charging_car_ids:
+
+            charging_cars_ids = traci_connection.chargingstation.getVehicleIDs("cs_0")
+            charging_cars_ids = (
+                charging_cars_ids
+                + traci_connection.chargingstation.getVehicleIDs("cs_1")
+            )
+
+            for v_id in charging_cars_ids:
 
                 current_battery = float(
                     traci_connection.vehicle.getParameter(
