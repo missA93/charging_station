@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- generated on 2025-06-08 01:50:28 by Eclipse SUMO sumo Version 1.22.0
+<!-- generated on 2025-06-09 01:38:28 by Eclipse SUMO sumo Version 1.22.0
 -->
 
 <sumoConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/sumoConfiguration.xsd">
 
     <input>
         <net-file value="charging_station_net.net.xml"/>
-        <route-files value="charging_station_net.rou.xml"/>
-        <additional-files value="charging_station_net.add.xml"/>
+        <route-files value="charging_station_sumoconfig.rou.xml"/>
+        <additional-files value="charging_station_sumoconfig.add.xml"/>
         <junction-taz value="true"/>
     </input>
 
