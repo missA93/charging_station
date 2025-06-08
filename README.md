@@ -1,1 +1,1 @@
-Azar maghze khar khorde.
+azar
