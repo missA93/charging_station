@@ -23,10 +23,7 @@
         <param key="propulsionEfficiency" value="0.9" />
         <param key="recuperationEfficiency" value="0.9" />
         <param key="stoppingThreshold" value="0.1" />
-        <!-- پارامترهای دیگر دستگاه باتری مانند actualBatteryCapacity (Wh) و charge (SoC)
-             می‌توانند از طریق TraCI در ابتدای شبیه‌سازی یا در حین آن تنظیم شوند.
-             SUMO همچنین می‌تواند مقادیر پیش‌فرضی برای آنها در نظر بگیرد اگر تنظیم نشوند.
-        -->
+
     </vType>
     <flow id="f_0" type="ePKW" begin="0.00" fromJunction="J7" toJunction="J10" end="3600.00"
         vehsPerHour="200" />

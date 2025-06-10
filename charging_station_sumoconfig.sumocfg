@@ -3,13 +3,36 @@
 <!-- generated on 2025-06-09 01:38:28 by Eclipse SUMO sumo Version 1.22.0
 -->
 
-<sumoConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/sumoConfiguration.xsd">
+<sumoConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/sumoConfiguration.xsd">
 
     <input>
-        <net-file value="charging_station_net.net.xml"/>
-        <route-files value="charging_station_sumoconfig.rou.xml"/>
-        <additional-files value="charging_station_sumoconfig.add.xml"/>
-        <junction-taz value="true"/>
+        <net-file value="charging_station_net.net.xml" />
+        <route-files value="charging_station_sumoconfig.rou.xml" />
+        <additional-files value="charging_station_sumoconfig.add.xml" />
+        <junction-taz value="true" />
     </input>
+    <output>
+        <battery-output value="battery_output.xml" />
+        <battery-output.precision value="4" />
+        <chargingstations-output value="chargingstations.xml" />
+    </output>
+    <time>
+        <begin value="0" />
+        <end value="3600" />
+    </time>
 
+    <processing>
+        <collision.action value="remove" />
+    </processing>
+
+    <report>
+        <verbose value="true" />
+        <duration-log.statistics value="true" />
+        <no-step-log value="true" />
+    </report>
+
+    <battery>
+        <device.battery.probability value="1" />
+    </battery>
 </sumoConfiguration>
